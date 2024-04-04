@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 import Counters from './components/Counters';
 
 function App() {
@@ -13,8 +13,8 @@ function App() {
       .map(it => parseInt(it.trim()))
       .filter(it => it > 0);
 
-    setNumbers(newNumebrs)
-    setStartId(startId + 1)
+    setNumbers(newNumebrs);
+    setStartId(startId + 1);
   }
 
 
@@ -26,8 +26,8 @@ function App() {
       </div>
       <Counters numbers={numbers} startId={startId} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
 
