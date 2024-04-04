@@ -1,35 +1,33 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Counters from './components/Counters';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [text, setText] = useState('');
+  const [numbers, setNumbers] = useState<number[]>([]);
+  const [startId, setStartId] = useState(0);
+
+  function start() {
+    const newNumebrs = text
+      .split(',')
+      .map(it => parseInt(it.trim()))
+      .filter(it => it > 0);
+
+    setNumbers(newNumebrs)
+    setStartId(startId + 1)
+  }
+
 
   return (
-    <>
+    <div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <input value={text} onChange={(e) => setText(e.target.value)}></input>
+        <button onClick={start}>Start</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <Counters numbers={numbers} startId={startId} />
+    </div>
   )
 }
 
 export default App
+
